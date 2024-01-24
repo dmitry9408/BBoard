@@ -1,0 +1,31 @@
+{% extends 'layout/basic.html' %}
+
+{% load static %}
+
+{% block title %}{{ bb.title }} - {{ bb.rubric.name }}{% endblock %}
+{% block content %}
+    <div class="row mt-3">
+        {% if bb.image %}
+            <div class="col-md-auto">
+                <img class="main-image" src="{{ bb.image.url }}" width="300px">
+            </div>
+        {% endif %}
+        <div class="col">
+            <h2>{{ bb.title }}</h2>
+            <p>{{ bb.content }}</p>
+            <p class="fw-bold">{{ bb.price }}</p>
+            <p>{{ bb.contacts }}</p>
+            <p class="text-end fst-italic">Добавлено {{ bb.created_at }}</p>
+        </div>
+    </div>
+    {% if ais %}
+        <div class="d-flex justify-content-flex flex-wrap mt-5">
+            {% for ai in ais %}
+                <div class="d-flex justify-content-left align-items-center">
+                    <img class="additional-image" src="{{ ai.image.url }}" width="180px">
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <p><a href="{% url 'main:rubric_bbs' pk=bb.rubric.pk %}">{{ all }} Назад</a></p>
+{% endblock %}

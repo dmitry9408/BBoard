@@ -5,3 +5,11 @@ header h1 {
 .root {
     font-size: larger;
 }
+
+img.main-image {
+    width: 40%;
+}
+
+img.additional-image {
+    width: 20%;
+}

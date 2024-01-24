@@ -4,7 +4,7 @@ from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
 
 from .signals import post_register
-from .models import SuperRubric, SubRubric
+from .models import SuperRubric, SubRubric, Bb, AdditionalImage
 
 
 class ProfileEditForm(forms.ModelForm):
@@ -61,3 +61,13 @@ class SubRubricForm(forms.ModelForm):
 
 class SearchForm(forms.Form):
     keyword = forms.CharField(required=False, max_length=25, label="")
+
+
+class BbForm(forms.ModelForm):
+    class Meta:
+        model = Bb
+        fields = '__all__'
+        widgets = {'author': forms.HiddenInput}
+
+
+AIFormSet = forms.inlineformset_factory(Bb, AdditionalImage, fields='__all__')
